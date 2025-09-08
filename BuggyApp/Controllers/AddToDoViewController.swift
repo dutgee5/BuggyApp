@@ -6,7 +6,13 @@ class AddToDoViewController: UIViewController {
     var onSave: ((ToDo) -> Void)?
 
     @IBAction private func saveButtonTapped(_ sender: UIButton) {
-        guard let text = textField.text, !text.isEmpty else { return }
+        guard let text = textField.text, !text.isEmpty else {
+            // If empty, warn the user
+            let alert = UIAlertController(title: "Error", message: "Enter a Title ...", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+            return
+        }
         let todo = ToDo(id: Int.random(in: 1000...9999),
                         title: text,
                         completed: false,

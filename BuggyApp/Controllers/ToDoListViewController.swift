@@ -45,7 +45,7 @@ extension ToDoListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        detailVC.todo = todos[indexPath.section]
+        detailVC.todo = todos[indexPath.row] //corrected
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
@@ -53,5 +53,6 @@ extension ToDoListViewController: UITableViewDataSource, UITableViewDelegate {
 extension ToDoListViewController: APIServiceDelegate {
     func didFetchTodos(_ todos: [ToDo]) {
         self.todos = todos
+        self.tableView.reloadData() //add.
     }
 }

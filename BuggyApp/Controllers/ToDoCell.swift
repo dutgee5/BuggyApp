@@ -13,8 +13,6 @@ class ToDoCell: UITableViewCell {
     
     func populate(with toDo: ToDo) {
         titleLabel.text = toDo.title
-        if !completedSwitch.isOn {
-            completedSwitch.isOn = toDo.completed
-        }
+        completedSwitch.isOn = toDo.completed 
     }
 }
